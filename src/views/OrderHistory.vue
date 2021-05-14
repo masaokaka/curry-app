@@ -65,6 +65,7 @@ export default {
                                 let a = JSON.stringify(item);
                                 a = JSON.parse(a);
                                 array.push(a);
+
                             }
                         })
                     })
