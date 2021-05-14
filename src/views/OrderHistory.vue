@@ -4,6 +4,7 @@
     <p v-if="changeFlag" style="color:red; font-weight:bold;">注文履歴はありません</p>
 
   <v-data-table
+    v-if="!changeFlag"
     :headers="headers"
     :items="orderedItemsInfo"
     :items-per-page="5"
@@ -58,13 +59,12 @@ export default {
                     order.itemInfo.forEach((info)=>{
                         itemData.forEach((item)=>{
                             if(info.itemId==item.id){
-                                item.num = info.itemNum
-                                item.orderId = info.id
-                                item.sum = item.num * item.price
-                                console.log(item.sum)
-                                let a = JSON.stringify(item)
-                                a = JSON.parse(a)
-                                array.push(a)
+                                item.num = info.itemNum;
+                                item.orderId = info.id;
+                                item.sum = item.num * item.price;
+                                let a = JSON.stringify(item);
+                                a = JSON.parse(a);
+                                array.push(a);
                             }
                         })
                     })

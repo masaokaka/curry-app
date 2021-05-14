@@ -31,6 +31,7 @@ export default new Vuex.Store({
     flag: true,
     cartItems:null,
     orderedItems:[],
+    storageBox:[],
   },
   getters:{
     uid:state=>state.login_user ? state.login_user.uid:null,
@@ -51,7 +52,7 @@ export default new Vuex.Store({
     addItemToCartForNoUser(state,itemInfo){
       let cartItems = state.cartItems
       cartItems.itemInfo.push(itemInfo)
-    },
+    },                 
     addItemToOrderedItems(state,{orderId,order}){
       order.orderId = orderId
       state.orderedItems.push(order)
@@ -69,6 +70,11 @@ export default new Vuex.Store({
     deleteLoginUser(state){
       state.login_user = null;
     },
+    fetchStorage(state){
+      state.storageBox = JSON.parse(
+        localStorage.getItem('cart-storage') || []
+      )
+    }
   },
   actions: {
     //ログアウト処理
@@ -130,7 +136,7 @@ export default new Vuex.Store({
         commit('deleteCartItem',index)
       }
     },
-    addItemToCart({state,getters,commit},{itemId,number}){
+    addItemToCart({state,getters,commit,dispatch},{itemId,number}){
       //一意の文字列を作成(itemごとのID用)
       function getUniqueStr(myStrong){
         var strong = 1000;

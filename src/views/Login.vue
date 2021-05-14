@@ -48,10 +48,7 @@ export default {
             this.login({email:this.email,password:this.password});
             this.email = '';
             this.password = '';
-            // if(){
-            //     //ショッピングカートの有無で繊維をわける？
-            // }
-            // this.$router.push({name:})
+            this.$router.push('/');
         }
     }
 }

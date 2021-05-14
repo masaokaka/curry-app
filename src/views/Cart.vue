@@ -114,7 +114,7 @@ export default {
                 this.$router.push('/login')
             }
         },
-        ...mapActions(['deleteItemFromCart']),
+        ...mapActions(['deleteItemFromCart','fetchStorage']),
         deleteConfirm(cartId){
             if(confirm('削除してもよろしいですか？'))
             this.deleteItemFromCart({cartId:cartId})
